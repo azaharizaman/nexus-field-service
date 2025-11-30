@@ -1,7 +1,0 @@
-framework:
-  rate_limiter:
-    login_attempts:
-      policy: 'sliding_window'
-      limit: 5
-      interval: '15 minutes'
-      # Use storage; defaults to cache.app

@@ -1,79 +1,64 @@
 {
-    "name": "nexus/monorepo",
-    "description": "Nexus - Framework-Agnostic PHP Packages for ERP Systems",
+    "name": "nexus/field-service",
+    "description": "Framework-agnostic field service management engine for work orders, technician dispatch, mobile job execution, service contracts, and SLA tracking",
     "type": "library",
     "license": "MIT",
-    "require": {
-        "php": "^8.3",
-        "nexus/shared-kernel": "*@dev",
-        "nexus/identity": "*@dev",
-        "nexus/backoffice": "*@dev",
-        "nexus/machine-learning": "*@dev",
-        "nexus/geo": "*@dev",
-        "nexus/routing": "*@dev",
-        "nexus/inventory": "*@dev",
-        "nexus/warehouse": "*@dev",
-        "nexus/manufacturing": "*@dev",
-        "symfony/http-client": "^7.3",
-        "nyholm/psr7": "^1.8",
-        "psr/http-client": "^1.0",
-        "nexus/event-stream": "*@dev",
-        "nexus/tax": "*@dev",
-        "nexus/procurement-ml": "*@dev",
-        "nexus/tenant": "*@dev"
-    },
-    "repositories": [
+    "keywords": [
+        "field-service",
+        "work-order",
+        "technician",
+        "dispatch",
+        "service-contract",
+        "sla",
+        "mobile",
+        "gps",
+        "maintenance"
+    ],
+    "authors": [
         {
-            "type": "path",
-            "url": "./packages/SharedKernel",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "./packages/domain/*/*",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "./packages/support/*",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "./packages/operations/*",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "./orchestrators/*",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "./adapters/*",
-            "options": {
-                "symlink": true
-            }
+            "name": "Nexus Development Team",
+            "email": "dev@nexus.local"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "config": {
-        "allow-plugins": {
-            "php-http/discovery": true
-        }
+    "require": {
+        "php": "^8.3",
+        "psr/log": "^3.0",
+        "nexus/party": "*@dev",
+        "nexus/backoffice": "*@dev",
+        "nexus/inventory": "*@dev",
+        "nexus/warehouse": "*@dev",
+        "nexus/scheduler": "*@dev",
+        "nexus/routing": "*@dev",
+        "nexus/geo": "*@dev",
+        "nexus/workflow": "*@dev",
+        "nexus/sequencing": "*@dev",
+        "nexus/document": "*@dev",
+        "nexus/storage": "*@dev",
+        "nexus/notifier": "*@dev",
+        "nexus/audit-logger": "*@dev",
+        "nexus/tenant": "*@dev",
+        "nexus/product": "*@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11.0"
-    }
+        "phpunit/phpunit": "^10.0",
+        "mockery/mockery": "^1.6"
+    },
+    "suggest": {
+        "nexus/assets": "Enable preventive maintenance scheduling and asset tracking",
+        "nexus/machine-learning": "AI-powered technician assignment and demand forecasting",
+        "nexus/crypto": "Cryptographic timestamp signing for customer signatures (Tier 3 compliance)",
+        "nexus/event-stream": "Work order state replay for compliance auditing"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nexus\\FieldService\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nexus\\FieldService\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

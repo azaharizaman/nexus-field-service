@@ -1,274 +1,240 @@
-# Nexus - Framework-Agnostic PHP Packages for ERP Systems
+# Nexus\FieldService
 
-Nexus is a **package-only monorepo** containing 50+ atomic, reusable PHP packages for building Enterprise Resource Planning (ERP) systems. Each package is framework-agnostic, making them usable with Laravel, Symfony, Slim, or any other PHP framework.
+Framework-agnostic field service management engine for work orders, technician dispatch, mobile job execution, service contracts, and SLA tracking.
 
-## 📖 The Philosophy: "Pure Business Logic, Framework Independent"
+## Overview
 
-The core philosophy of Nexus is **Framework Agnosticism**. Business logic should be portable and reusable across different frameworks and applications.
+The **FieldService** package provides a complete solution for managing field service operations including:
 
-- **🎯 Pure Business Logic**: Packages contain only business rules and domain logic
-- **🔌 Interface-Driven**: All external dependencies defined as contracts
-- **📦 Atomic & Publishable**: Each package can be published independently to Packagist
-- **🧪 Testable**: Pure PHP logic with mockable dependencies
-- **🌍 Framework-Agnostic**: Works with Laravel, Symfony, or any PHP framework
+- Work order lifecycle management (NEW → SCHEDULED → IN_PROGRESS → COMPLETED → VERIFIED)
+- Intelligent technician assignment based on skills, proximity, and capacity
+- Service contract management with SLA tracking
+- Mobile job execution with offline sync capability
+- Parts consumption with van stock waterfall logic
+- GPS location tracking with privacy controls
+- Customer signature capture and verification
+- Automated preventive maintenance scheduling
+- Service report generation
 
-## 🏗️ Architecture
+## Features by Tier
 
-### 📦 Atomic Packages
+### Tier 1: Basic Work Orders
+- Manual work order creation and assignment
+- Technician schedule management
+- Basic parts consumption tracking
+- Customer signature capture (SHA-256 hash)
+- Service report PDF generation
 
-All packages in `packages/` are self-contained units of functionality designed to be:
+### Tier 2: Service Contracts & Preventive Maintenance
+- Service contract management with asset linkage
+- SLA deadline tracking and breach alerts
+- Automated preventive maintenance scheduling (7 days before due date)
+- Maintenance deduplication (±3 days conflict detection)
+- Checklist templates and validation
 
-- **Framework-Agnostic:** Pure PHP 8.3+ logic with no framework dependencies
-- **Persistence-Agnostic:** No migrations or models - data access defined via interfaces
-- **Publishable:** Each package can be published independently to Packagist
-- **Contract-Driven:** All external dependencies injected as interfaces
-- **Stateless:** Long-term state externalized via storage interfaces
+### Tier 3: Enterprise Features
+- ML-powered technician assignment via `Nexus\Intelligence`
+- VRP route optimization via `Nexus\Routing`
+- RFC 3161 cryptographic timestamp signing for signatures
+- Advanced GPS tracking and analytics
+- Event sourcing for compliance auditing
 
-## 📦 Available Packages (51 packages)
-
-### Core Infrastructure (8 packages)
-- **`Nexus\Tenant`** - Multi-tenancy context and isolation engine
-- **`Nexus\Setting`** - Global and tenant-specific configuration management
-- **`Nexus\Sequencing`** - Auto-numbering with atomic counter management
-- **`Nexus\Period`** - Fiscal period management and transaction validation
-- **`Nexus\AuditLogger`** - Timeline feeds and audit trails
-- **`Nexus\EventStream`** - Event sourcing for critical domains (Finance GL, Inventory)
-- **`Nexus\Uom`** - Unit of measurement management and conversion
-- **`Nexus\Monitoring`** - Observability with telemetry, health checks, alerting, SLO tracking
-
-### Identity & Security (3 packages)
-- **`Nexus\Identity`** - Authentication, RBAC, MFA, session/token management
-- **`Nexus\Crypto`** - Cryptographic operations and key management
-- **`Nexus\Audit`** - Advanced audit capabilities (extends AuditLogger)
-
-### Finance & Accounting (7 packages)
-- **`Nexus\Finance`** - General ledger, journal entries, double-entry bookkeeping
-- **`Nexus\Accounting`** - Financial statements, period close, consolidation
-- **`Nexus\Receivable`** - Customer invoicing, collections, credit control
-- **`Nexus\Payable`** - Vendor bills, payment processing, 3-way matching
-- **`Nexus\CashManagement`** - Bank reconciliation, cash flow forecasting
-- **`Nexus\Budget`** - Budget planning and variance tracking
-- **`Nexus\Assets`** - Fixed asset management, depreciation
-- **`Nexus\Currency`** - Multi-currency management and exchange rates
-
-### Sales & Operations (6 packages)
-- **`Nexus\Sales`** - Quotation-to-order lifecycle, pricing engine
-- **`Nexus\Inventory`** - Stock management with lot/serial tracking
-- **`Nexus\Warehouse`** - Warehouse operations and bin management
-- **`Nexus\Procurement`** - Purchase requisitions, POs, goods receipt
-- **`Nexus\Manufacturing`** - Bill of materials, work orders, MRP
-- **`Nexus\Product`** - Product catalog, pricing, categorization
-
-### Human Resources (3 packages)
-- **`Nexus\Hrm`** - Leave, attendance, performance reviews
-- **`Nexus\Payroll`** - Payroll processing framework
-- **`Nexus\PayrollMysStatutory`** - Malaysian statutory calculations (EPF, SOCSO, PCB)
-
-### Customer & Partner Management (4 packages)
-- **`Nexus\Party`** - Customers, vendors, employees, contacts
-- **`Nexus\Crm`** - Leads, opportunities, sales pipeline
-- **`Nexus\Marketing`** - Campaigns, A/B testing, GDPR compliance
-- **`Nexus\FieldService`** - Work orders, technicians, service contracts
-
-### Integration & Automation (7 packages)
-- **`Nexus\Connector`** - Integration hub with circuit breaker, OAuth
-- **`Nexus\Workflow`** - Process automation, state machines
-- **`Nexus\Notifier`** - Multi-channel notifications (email, SMS, push, in-app)
-- **`Nexus\Scheduler`** - Task scheduling and job management
-- **`Nexus\DataProcessor`** - OCR, ETL interfaces (interface-only package)
-- **`Nexus\Intelligence`** - AI-assisted automation and predictions
-- **`Nexus\Geo`** - Geocoding, geofencing, routing
-- **`Nexus\Routing`** - Route optimization and caching
-
-### Reporting & Data (5 packages)
-- **`Nexus\Reporting`** - Report definition and execution engine
-- **`Nexus\Export`** - Multi-format export (PDF, Excel, CSV, JSON)
-- **`Nexus\Import`** - Data import with validation and transformation
-- **`Nexus\Analytics`** - Business intelligence, predictive models
-- **`Nexus\Document`** - Document management with versioning
-
-### Compliance & Governance (4 packages)
-- **`Nexus\Compliance`** - Process enforcement, operational compliance
-- **`Nexus\Statutory`** - Reporting compliance, statutory filing
-- **`Nexus\Backoffice`** - Company structure, offices, departments
-- **`Nexus\OrgStructure`** - Organizational hierarchy management
-
-### Support & Utilities (3 packages)
-- **`Nexus\Storage`** - File storage abstraction layer
-- **`Nexus\ProjectManagement`** - Projects, tasks, timesheets, milestones
-- **`Nexus\FeatureFlags`** - Feature flag management
-
-## 🛠️ Getting Started
-
-### Prerequisites
-- PHP 8.3+
-- Composer
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url> nexus
-   cd nexus
-   ```
-
-2. **Install Dependencies:**
-   ```bash
-   composer install
-   ```
-
-3. **Explore Packages:**
-   ```bash
-   # Browse available packages
-   ls packages/
-   
-   # Read package documentation
-   cat packages/Tenant/README.md
-   cat packages/Finance/README.md
-   ```
-
-## 📚 Usage
-
-### Installing a Package
-
-Each package can be installed independently in your PHP application:
+## Installation
 
 ```bash
-# In your Laravel, Symfony, or other PHP application
-composer require nexus/tenant
-composer require nexus/finance
-composer require nexus/receivable
+composer require nexus/field-service
 ```
 
-### Implementing Package Contracts
+## Key Concepts
 
-Packages define interfaces, your application provides implementations:
+### Work Order States
+
+```
+NEW → SCHEDULED → IN_PROGRESS → COMPLETED → VERIFIED
+  ↓       ↓            ↓            ↓
+  └───────┴────────────┴────────────┴─→ CANCELLED
+```
+
+### Parts Consumption Waterfall
+
+1. Check technician van stock
+2. Deduct available quantity from van
+3. Deduct remainder from primary warehouse
+4. Update work order parts cost
+
+### SLA Tracking
+
+Service contracts define response times (e.g., "4 hours"). When a work order is created against a contract:
+
+1. Calculate SLA deadline based on response time
+2. Schedule escalation check job
+3. Monitor progress via `Nexus\Workflow`
+4. Trigger escalation workflow on breach
+
+## Dependencies
+
+### Required Packages
+- `nexus/party` - Customer and vendor management
+- `nexus/backoffice` - Staff/technician management
+- `nexus/inventory` - Parts consumption tracking
+- `nexus/warehouse` - Van stock management
+- `nexus/scheduler` - Preventive maintenance automation
+- `nexus/routing` - Route optimization (Tier 3)
+- `nexus/geo` - Geocoding and distance calculation
+- `nexus/workflow` - SLA escalation
+- `nexus/sequencing` - Work order numbering
+- `nexus/document` - Service report PDF generation
+- `nexus/storage` - Photo and signature storage
+- `nexus/notifier` - Multi-channel notifications
+- `nexus/audit-logger` - Audit trail
+- `nexus/tenant` - Multi-tenancy isolation
+- `nexus/product` - Service and parts catalog
+
+### Optional Packages
+- `nexus/assets` - Asset tracking and maintenance history
+- `nexus/intelligence` - AI-powered assignment (Tier 3)
+- `nexus/crypto` - Signature timestamp signing (Tier 3)
+- `nexus/event-stream` - Event sourcing for compliance
+
+## Usage
+
+### Creating a Work Order
 
 ```php
-// Package defines the interface
-namespace Nexus\Tenant\Contracts;
+use Nexus\FieldService\Services\WorkOrderManager;
+use Nexus\FieldService\Enums\WorkOrderPriority;
+use Nexus\FieldService\Enums\ServiceType;
 
-interface TenantRepositoryInterface
-{
-    public function findById(string $id): ?TenantInterface;
-    public function save(TenantInterface $tenant): void;
-}
+$workOrder = $workOrderManager->create([
+    'customer_party_id' => 'party-123',
+    'service_location_id' => 'address-456',
+    'service_type' => ServiceType::REPAIR,
+    'priority' => WorkOrderPriority::HIGH,
+    'description' => 'HVAC system not cooling properly',
+    'scheduled_start' => new \DateTimeImmutable('2025-11-25 09:00:00'),
+]);
+```
 
-// Your Laravel application implements it
-namespace App\Repositories;
+### Assigning a Technician
 
-use Nexus\Tenant\Contracts\TenantRepositoryInterface;
-use Nexus\Tenant\Contracts\TenantInterface;
-use App\Models\Tenant;
+```php
+use Nexus\FieldService\Services\TechnicianDispatcher;
 
-final class EloquentTenantRepository implements TenantRepositoryInterface
-{
-    public function findById(string $id): ?TenantInterface
-    {
-        return Tenant::find($id);
-    }
-    
-    public function save(TenantInterface $tenant): void
-    {
-        Tenant::updateOrCreate(['id' => $tenant->getId()], [
-            'name' => $tenant->getName(),
-            'status' => $tenant->getStatus()->value,
-        ]);
-    }
-}
+// Find best available technician
+$technician = $technicianDispatcher->findBestTechnician(
+    $workOrder,
+    $availableTechnicians
+);
 
-// Bind in service provider
-$this->app->bind(
-    TenantRepositoryInterface::class,
-    EloquentTenantRepository::class
+// Assign to work order
+$workOrderManager->assign($workOrder->getId(), $technician->getId());
+```
+
+### Recording Parts Consumption
+
+```php
+use Nexus\FieldService\Services\PartsConsumptionManager;
+
+$partsConsumptionManager->recordConsumption(
+    $workOrder->getId(),
+    $productVariantId,
+    $quantity,
+    $technicianId
+);
+// Automatically deducts from van stock first, then warehouse
+```
+
+### Capturing Customer Signature
+
+```php
+$signatureData = base64_encode($signatureImageBinary);
+
+$workOrderManager->captureSignature(
+    $workOrder->getId(),
+    $signatureData,
+    $technicianId,
+    $gpsLocation
 );
 ```
 
-### Using Package Services
+### Generating Service Report
 
 ```php
-use Nexus\Tenant\Contracts\TenantContextInterface;
-use Nexus\Finance\Contracts\GeneralLedgerManagerInterface;
+use Nexus\FieldService\Services\ServiceReportGenerator;
 
-class InvoiceController
-{
-    public function __construct(
-        private readonly TenantContextInterface $tenantContext,
-        private readonly GeneralLedgerManagerInterface $glManager
-    ) {}
-    
-    public function store(Request $request)
-    {
-        $tenantId = $this->tenantContext->getCurrentTenantId();
-        
-        // Use package business logic
-        $this->glManager->postJournalEntry($journalEntry);
-    }
-}
+$document = $serviceReportGenerator->generate($workOrder->getId());
+// Returns DocumentInterface with PDF content
 ```
 
-## 🏛️ Architectural Principles
+## Architecture
 
-### 1. Framework Agnosticism
-- No Laravel, Symfony, or framework-specific code in packages
-- Use PSR interfaces (`psr/log`, `psr/http-client`, `psr/cache`)
-- All framework integration happens in consuming applications
+This package follows the Nexus monorepo architecture:
 
-### 2. Contract-Driven Design
-- Packages define needs via interfaces
-- Consuming applications provide implementations
-- Dependency injection for all external dependencies
+- **Package Layer** (`packages/FieldService/`): Framework-agnostic business logic
+- **Application Layer** (`apps/Atomy/`): Laravel implementation with Eloquent models and migrations
 
-### 3. Stateless Design
-- No session state in package classes
-- Long-term state externalized via storage interfaces
-- Horizontally scalable by design
+### Package Structure
 
-### 4. Modern PHP Standards
-- PHP 8.3+ with strict types
-- Constructor property promotion
-- Readonly properties for dependencies
-- Native enums for fixed value sets
-- Match expressions over switch statements
+```
+packages/FieldService/
+├── src/
+│   ├── Contracts/          # Interfaces for dependency injection
+│   ├── Services/           # Business logic orchestrators
+│   ├── Core/               # Internal engine components
+│   ├── Enums/              # Native PHP 8.3 enums
+│   ├── ValueObjects/       # Immutable data structures
+│   ├── Events/             # Domain events
+│   └── Exceptions/         # Domain-specific exceptions
+```
 
-## 📖 Documentation
+## Testing
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Architectural guidelines and rules
-- **[docs/NEXUS_PACKAGES_REFERENCE.md](docs/NEXUS_PACKAGES_REFERENCE.md)** - Complete package capabilities reference
-- **[.github/copilot-instructions.md](.github/copilot-instructions.md)** - Development guidelines
-- **Package READMEs** - Individual package documentation (e.g., `packages/Finance/README.md`)
+```bash
+composer test
+```
 
-## 🤝 Contributing
+## Documentation
 
-Please refer to [ARCHITECTURE.md](ARCHITECTURE.md) for detailed architectural guidelines.
+### Getting Started
+- **[Getting Started Guide](docs/getting-started.md)** - Comprehensive 840-line guide covering:
+  - Prerequisites and installation
+  - 7 core concepts (work order lifecycle, assignment strategies, SLA enforcement, preventive maintenance, offline sync, GPS tracking, parts consumption)
+  - Configuration and setup
+  - Integration examples
+  - Troubleshooting and performance tips
 
-### Key Rules:
-1. **Packages must be framework-agnostic** - No Laravel, Symfony, or framework-specific code
-2. **Packages define persistence needs via Contracts** - No migrations or models in packages
-3. **All dependencies must be interfaces** - Use dependency injection
-4. **Modern PHP 8.3+ standards** - Use latest language features
-5. **Consult NEXUS_PACKAGES_REFERENCE.md** - Avoid reimplementing existing functionality
+### API Reference
+- **[API Reference](docs/api-reference.md)** - Complete documentation of:
+  - 17 interfaces (WorkOrderInterface, TechnicianAssignmentStrategyInterface, GpsTrackerInterface, MobileSyncManagerInterface, etc.)
+  - 3 value objects (GpsLocation, SkillSet, LaborHours)
+  - 3 enums (WorkOrderStatus, WorkOrderPriority, MaintenanceType)
+  - 14 exceptions with factory methods
 
-### Creating a New Package
+### Integration Guides
+- **[Integration Guide](docs/integration-guide.md)** - Framework integration examples:
+  - Laravel service provider and controller examples
+  - Symfony services.yaml and controller examples
+  - Common patterns (offline sync, GPS tracking, SLA monitoring)
+  - Testing examples
 
-1. Create `packages/NewPackage/` directory
-2. Run `composer init` (require `"php": "^8.3"`)
-3. Define PSR-4 autoloader: `"Nexus\\NewPackage\\": "src/"`
-4. Create `src/Contracts/`, `src/Services/`, `src/Exceptions/`
-5. Write comprehensive `README.md` with usage examples
-6. Add MIT `LICENSE` file
-7. Update root `composer.json` repositories array
+### Code Examples
+- **[Basic Usage](docs/examples/basic-usage.php)** - Common operations:
+  - Create and auto-assign work orders
+  - Start work orders with GPS validation
+  - Complete work orders with signatures
+  - Service contract validation
+  - SLA breach detection
+- **[Advanced Usage](docs/examples/advanced-usage.php)** - Complex scenarios:
+  - Custom technician assignment strategies
+  - Offline mobile sync with conflict resolution
+  - Preventive maintenance scheduling with deduplication
 
-## 📄 License
+### Implementation Documentation
+- **[Implementation Summary](IMPLEMENTATION_SUMMARY.md)** - 806-line detailed implementation status
+- **[Requirements](REQUIREMENTS.md)** - 100 documented requirements with traceability
+- **[Test Suite Summary](TEST_SUITE_SUMMARY.md)** - ~95 tests with coverage metrics
+- **[Valuation Matrix](VALUATION_MATRIX.md)** - Package valuation ($820K value, 3,696% ROI)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## License
 
-## 🔗 Links
-
-- **Package Reference Guide**: [docs/NEXUS_PACKAGES_REFERENCE.md](docs/NEXUS_PACKAGES_REFERENCE.md)
-- **Architecture Documentation**: [ARCHITECTURE.md](ARCHITECTURE.md)
-- **Implementation Summaries**: `docs/*_IMPLEMENTATION_SUMMARY.md`
-
----
-
-**Nexus** - Building the future of modular ERP systems with framework-agnostic PHP packages.
+MIT License. See [LICENSE](LICENSE) file for details.

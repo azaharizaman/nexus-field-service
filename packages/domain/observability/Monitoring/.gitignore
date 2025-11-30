@@ -1,6 +1,0 @@
-vendor/
-.phpunit.cache/
-coverage-report/
-.phpunit.result.cache
-phpunit.xml.dist
-composer.lock

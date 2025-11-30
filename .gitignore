@@ -1,38 +1,4 @@
-# Package vendors
-/packages/*/vendor/
-
-# IDEs
-/.idea
-/.vscode
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Composer
 /vendor/
 composer.lock
-
-# Testing
-/coverage/
-.phpunit.cache
 .phpunit.result.cache
-/packages/*/coverage/
-/packages/*/.phpunit.cache
-/packages/*/.phpunit.result.cache
-
-# Build artifacts
-/build/
-/dist/
-
-# Logs
-*.log
-/storage/logs/
-
-# Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+.DS_Store
