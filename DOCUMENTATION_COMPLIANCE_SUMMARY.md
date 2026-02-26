@@ -147,7 +147,7 @@ The **FieldService** package has achieved **full documentation compliance** with
 
 **Optional:**
 - Nexus\AuditLogger (audit trail)
-- Nexus\Monitoring (telemetry tracking)
+- Nexus\Telemetry (telemetry tracking)
 
 ---
 

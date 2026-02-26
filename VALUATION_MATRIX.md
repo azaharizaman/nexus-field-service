@@ -132,7 +132,7 @@
 
 ### Internal Package Dependencies
 - **Depends On:** Nexus\Geo, Nexus\Routing, Nexus\Inventory, Nexus\Tenant
-- **Depended By:** (Potentially) Nexus\Analytics (field service KPIs), Nexus\Crm (service history)
+- **Depended By:** (Potentially) Nexus\QueryEngine (field service KPIs), Nexus\Crm (service history)
 - **Coupling Risk:** Medium (tight integration with Geo and Routing for core features)
 
 ### Maintenance Risk

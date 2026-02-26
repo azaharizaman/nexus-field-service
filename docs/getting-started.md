@@ -11,7 +11,7 @@
 - **Nexus\Routing** - Route optimization (required)
 - **Nexus\Inventory** - Parts consumption tracking (required)
 - **Nexus\AuditLogger** - Audit trail (optional but recommended)
-- **Nexus\Monitoring** - Performance metrics (optional but recommended)
+- **Nexus\Telemetry** - Performance metrics (optional but recommended)
 
 ## When to Use This Package
 
