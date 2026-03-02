@@ -21,23 +21,14 @@
         }
     ],
     "require": {
-        "php": "^8.3",
-        "psr/log": "^3.0",
-        "nexus/party": "*@dev",
         "nexus/backoffice": "*@dev",
-        "nexus/inventory": "*@dev",
-        "nexus/warehouse": "*@dev",
-        "nexus/scheduler": "*@dev",
-        "nexus/routing": "*@dev",
-        "nexus/geo": "*@dev",
-        "nexus/workflow": "*@dev",
-        "nexus/sequencing": "*@dev",
         "nexus/document": "*@dev",
-        "nexus/storage": "*@dev",
-        "nexus/notifier": "*@dev",
-        "nexus/audit-logger": "*@dev",
-        "nexus/tenant": "*@dev",
-        "nexus/product": "*@dev"
+        "nexus/geo": "*@dev",
+        "nexus/inventory": "*@dev",
+        "nexus/sequencing": "*@dev",
+        "nexus/warehouse": "*@dev",
+        "php": "^8.3",
+        "psr/log": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",
@@ -45,9 +36,18 @@
     },
     "suggest": {
         "nexus/assets": "Enable preventive maintenance scheduling and asset tracking",
-        "nexus/machine-learning": "AI-powered technician assignment and demand forecasting",
+        "nexus/audit-logger": "Optional integration dependency; currently not referenced by package src.",
         "nexus/crypto": "Cryptographic timestamp signing for customer signatures (Tier 3 compliance)",
-        "nexus/event-stream": "Work order state replay for compliance auditing"
+        "nexus/event-stream": "Work order state replay for compliance auditing",
+        "nexus/machine-learning": "AI-powered technician assignment and demand forecasting",
+        "nexus/notifier": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/party": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/product": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/routing": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/scheduler": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/storage": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/tenant": "Optional integration dependency; currently not referenced by package src.",
+        "nexus/workflow": "Optional integration dependency; currently not referenced by package src."
     },
     "autoload": {
         "psr-4": {
