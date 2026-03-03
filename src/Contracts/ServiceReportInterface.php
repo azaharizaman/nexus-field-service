@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Nexus\FieldService\Contracts;
 
-use Nexus\Document\Contracts\DocumentInterface;
-
 /**
  * Service Report Interface
  *

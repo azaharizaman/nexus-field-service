@@ -29,7 +29,7 @@ use Nexus\FieldService\ValueObjects\GpsLocation;
 use Nexus\FieldService\ValueObjects\LaborHours;
 use Nexus\FieldService\ValueObjects\CustomerSignature;
 use Nexus\FieldService\Core\Checklist\ChecklistValidator;
-use Nexus\Sequencing\Contracts\SequenceManagerInterface;
+use Nexus\FieldService\Contracts\SequenceManagerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 

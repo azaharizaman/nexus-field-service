@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Nexus\FieldService\Services;
 
 use Nexus\FieldService\Contracts\PartsConsumptionRepositoryInterface;
+use Nexus\FieldService\Contracts\StockManagerInterface;
+use Nexus\FieldService\Contracts\LocationManagerInterface;
 use Nexus\FieldService\Events\PartsConsumedEvent;
-use Nexus\Inventory\Contracts\StockManagerInterface;
-use Nexus\Warehouse\Contracts\LocationManagerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 

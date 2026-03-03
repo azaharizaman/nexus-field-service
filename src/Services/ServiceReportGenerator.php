@@ -8,10 +8,10 @@ use Nexus\FieldService\Contracts\WorkOrderInterface;
 use Nexus\FieldService\Contracts\WorkOrderRepositoryInterface;
 use Nexus\FieldService\Contracts\PartsConsumptionRepositoryInterface;
 use Nexus\FieldService\Contracts\ServiceReportInterface;
+use Nexus\FieldService\Contracts\DocumentManagerInterface;
+use Nexus\FieldService\Contracts\ContentProcessorInterface;
+use Nexus\FieldService\Enums\DocumentFormat;
 use Nexus\FieldService\Exceptions\WorkOrderNotFoundException;
-use Nexus\Document\Contracts\DocumentManagerInterface;
-use Nexus\Document\Contracts\ContentProcessorInterface;
-use Nexus\Document\Enums\DocumentFormat;
 use Psr\Log\LoggerInterface;
 
 /**

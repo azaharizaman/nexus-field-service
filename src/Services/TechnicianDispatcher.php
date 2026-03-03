@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Nexus\FieldService\Services;
 
-use Nexus\Backoffice\Contracts\StaffInterface;
-use Nexus\Backoffice\Contracts\StaffRepositoryInterface;
+use Nexus\FieldService\Contracts\StaffInterface;
+use Nexus\FieldService\Contracts\StaffRepositoryInterface;
 use Nexus\FieldService\Contracts\WorkOrderInterface;
 use Nexus\FieldService\Contracts\TechnicianAssignmentStrategyInterface;
 use Nexus\FieldService\Contracts\RouteOptimizerInterface;

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Nexus\FieldService\Core\Assignment;
 
-use Nexus\Backoffice\Contracts\StaffInterface;
+use Nexus\FieldService\Contracts\StaffInterface;
+use Nexus\FieldService\Contracts\ProximityServiceInterface;
 use Nexus\FieldService\Contracts\TechnicianAssignmentStrategyInterface;
 use Nexus\FieldService\Contracts\WorkOrderInterface;
 use Nexus\FieldService\Contracts\WorkOrderRepositoryInterface;
 use Nexus\FieldService\ValueObjects\SkillSet;
-use Nexus\Geo\Services\ProximityService;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -27,7 +27,7 @@ final readonly class DefaultAssignmentStrategy implements TechnicianAssignmentSt
 
     public function __construct(
         private WorkOrderRepositoryInterface $workOrderRepository,
-        private ProximityService $proximityService,
+        private ProximityServiceInterface $proximityService,
         private LoggerInterface $logger
     ) {
     }
