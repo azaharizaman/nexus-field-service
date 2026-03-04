@@ -17,7 +17,9 @@ final readonly class PartsConsumedEvent
         private string $productVariantId,
         private float $quantity,
         private string $technicianId,
-        private \DateTimeImmutable $consumedAt
+        private \DateTimeImmutable $consumedAt,
+        private float $consumedFromVan = 0.0,
+        private float $consumedFromWarehouse = 0.0
     ) {
     }
 
@@ -44,5 +46,15 @@ final readonly class PartsConsumedEvent
     public function getConsumedAt(): \DateTimeImmutable
     {
         return $this->consumedAt;
+    }
+
+    public function getConsumedFromVan(): float
+    {
+        return $this->consumedFromVan;
+    }
+
+    public function getConsumedFromWarehouse(): float
+    {
+        return $this->consumedFromWarehouse;
     }
 }

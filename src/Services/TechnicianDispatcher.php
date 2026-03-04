@@ -42,6 +42,13 @@ final readonly class TechnicianDispatcher
         // Get available technicians
         $availableTechnicians = $this->getAvailableTechnicians($technicianIds);
 
+        if ($availableTechnicians === null) {
+            $this->logger->error('Technician lookup failed, cannot proceed with assignment', [
+                'work_order_id' => $workOrder->getId(),
+            ]);
+            return null;
+        }
+
         if (empty($availableTechnicians)) {
             $this->logger->warning('No available technicians found', [
                 'work_order_id' => $workOrder->getId(),
@@ -135,18 +142,18 @@ final readonly class TechnicianDispatcher
      * Get all available technicians.
      *
      * @param array<string>|null $technicianIds
-     * @return array<StaffInterface>
+     * @return array<StaffInterface>|null Returns null on fetch failure
      */
-    private function getAvailableTechnicians(?array $technicianIds = null): array
+    private function getAvailableTechnicians(?array $technicianIds = null): ?array
     {
         try {
             return $this->staffRepository->findAvailable($technicianIds);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             $this->logger->error('Failed to fetch available technicians', [
                 'technician_ids' => $technicianIds,
                 'error' => $e->getMessage(),
             ]);
-            return [];
+            return null;
         }
     }
 }

@@ -98,14 +98,18 @@ final readonly class PartsConsumptionManager
             $productVariantId,
             $quantity,
             $technicianId,
-            new \DateTimeImmutable()
+            new \DateTimeImmutable(),
+            $consumedFromVan,
+            $consumedFromWarehouse
         );
         
         $this->eventDispatcher->dispatch($event);
     }
 
     /**
-     * Get total parts cost for a work order.
+     * Get parts consumed for a work order.
+     * 
+     * @return array<PartsConsumptionInterface>
      */
     public function getTotalPartsConsumed(string $workOrderId): array
     {
