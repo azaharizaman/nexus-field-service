@@ -139,8 +139,14 @@ final readonly class TechnicianDispatcher
      */
     private function getAvailableTechnicians(?array $technicianIds = null): array
     {
-        // TODO: Filter by active technicians only
-        // For now, return empty array - implementation in Atomy
-        return [];
+        try {
+            return $this->staffRepository->findAvailable($technicianIds);
+        } catch (\Throwable $e) {
+            $this->logger->error('Failed to fetch available technicians', [
+                'technician_ids' => $technicianIds,
+                'error' => $e->getMessage(),
+            ]);
+            return [];
+        }
     }
 }
