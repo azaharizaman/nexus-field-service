@@ -39,45 +39,46 @@ final readonly class TechnicianDispatcher
         WorkOrderInterface $workOrder,
         ?array $technicianIds = null
     ): ?StaffInterface {
-        // Get available technicians
-        $availableTechnicians = $this->getAvailableTechnicians($technicianIds);
+        try {
+            // Get available technicians
+            $availableTechnicians = $this->getAvailableTechnicians($technicianIds);
 
-        if ($availableTechnicians === null) {
+            if (empty($availableTechnicians)) {
+                $this->logger->warning('No available technicians found', [
+                    'work_order_id' => $workOrder->getId(),
+                ]);
+                return null;
+            }
+
+            // Use assignment strategy to find best match
+            $bestTechnician = $this->assignmentStrategy->findBestTechnician(
+                $workOrder,
+                $availableTechnicians
+            );
+
+            if ($bestTechnician === null) {
+                $this->logger->warning('No suitable technician found', [
+                    'work_order_id' => $workOrder->getId(),
+                    'available_count' => count($availableTechnicians),
+                ]);
+                throw new TechnicianNotAvailableException(
+                    'No suitable technician available for this work order'
+                );
+            }
+
+            $this->logger->info('Best technician found', [
+                'work_order_id' => $workOrder->getId(),
+                'technician_id' => $bestTechnician->getId(),
+            ]);
+
+            return $bestTechnician;
+        } catch (\Exception $e) {
             $this->logger->error('Technician lookup failed, cannot proceed with assignment', [
                 'work_order_id' => $workOrder->getId(),
+                'error' => $e->getMessage(),
             ]);
             return null;
         }
-
-        if (empty($availableTechnicians)) {
-            $this->logger->warning('No available technicians found', [
-                'work_order_id' => $workOrder->getId(),
-            ]);
-            return null;
-        }
-
-        // Use assignment strategy to find best match
-        $bestTechnician = $this->assignmentStrategy->findBestTechnician(
-            $workOrder,
-            $availableTechnicians
-        );
-
-        if ($bestTechnician === null) {
-            $this->logger->warning('No suitable technician found', [
-                'work_order_id' => $workOrder->getId(),
-                'available_count' => count($availableTechnicians),
-            ]);
-            throw new TechnicianNotAvailableException(
-                'No suitable technician available for this work order'
-            );
-        }
-
-        $this->logger->info('Best technician found', [
-            'work_order_id' => $workOrder->getId(),
-            'technician_id' => $bestTechnician->getId(),
-        ]);
-
-        return $bestTechnician;
     }
 
     /**
@@ -142,9 +143,10 @@ final readonly class TechnicianDispatcher
      * Get all available technicians.
      *
      * @param array<string>|null $technicianIds
-     * @return array<StaffInterface>|null Returns null on fetch failure
+     * @return array<StaffInterface>
+     * @throws \Exception If fetch fails
      */
-    private function getAvailableTechnicians(?array $technicianIds = null): ?array
+    private function getAvailableTechnicians(?array $technicianIds = null): array
     {
         try {
             return $this->staffRepository->findAvailable($technicianIds);
@@ -153,7 +155,7 @@ final readonly class TechnicianDispatcher
                 'technician_ids' => $technicianIds,
                 'error' => $e->getMessage(),
             ]);
-            return null;
+            throw $e;
         }
     }
 }

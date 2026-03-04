@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nexus\FieldService\Services;
 
+use Nexus\FieldService\Contracts\PartsConsumptionInterface;
 use Nexus\FieldService\Contracts\PartsConsumptionRepositoryInterface;
 use Nexus\FieldService\Contracts\StockManagerInterface;
 use Nexus\FieldService\Contracts\LocationManagerInterface;
@@ -42,6 +43,14 @@ final readonly class PartsConsumptionManager
         float $quantity,
         string $technicianId
     ): void {
+        if ($quantity <= 0) {
+            $this->logger->warning('Attempted to record zero or negative parts consumption', [
+                'work_order_id' => $workOrderId,
+                'quantity' => $quantity,
+            ]);
+            return;
+        }
+
         $this->logger->info('Recording parts consumption', [
             'work_order_id' => $workOrderId,
             'product_variant_id' => $productVariantId,
@@ -80,16 +89,18 @@ final readonly class PartsConsumptionManager
             }
 
             // Deduct remainder from primary warehouse
-            $remainingQuantity = $quantity - $vanStockLevel;
-            $primaryWarehouseId = $this->warehouseManager->getPrimaryWarehouseId();
-            
-            $this->stockManager->issueStock($primaryWarehouseId, $productVariantId, $remainingQuantity);
-            $consumedFromWarehouse = $remainingQuantity;
-            
-            $this->logger->info('Remaining stock deducted from primary warehouse', [
-                'warehouse_id' => $primaryWarehouseId,
-                'quantity' => $remainingQuantity,
-            ]);
+            $remainingQuantity = $quantity - $consumedFromVan;
+            if ($remainingQuantity > 0) {
+                $primaryWarehouseId = $this->warehouseManager->getPrimaryWarehouseId();
+                
+                $this->stockManager->issueStock($primaryWarehouseId, $productVariantId, $remainingQuantity);
+                $consumedFromWarehouse = $remainingQuantity;
+                
+                $this->logger->info('Remaining stock deducted from primary warehouse', [
+                    'warehouse_id' => $primaryWarehouseId,
+                    'quantity' => $remainingQuantity,
+                ]);
+            }
         }
 
         // Dispatch event
