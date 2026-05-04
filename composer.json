@@ -1,5 +1,5 @@
 {
-    "name": "nexus/field-service",
+    "name": "azaharizaman/nexus-field-service",
     "description": "Framework-agnostic field service management engine for work orders, technician dispatch, mobile job execution, service contracts, and SLA tracking",
     "type": "library",
     "license": "MIT",
@@ -21,12 +21,12 @@
         }
     ],
     "require": {
-        "nexus/backoffice": "*@dev",
-        "nexus/document": "*@dev",
-        "nexus/geo": "*@dev",
-        "nexus/inventory": "*@dev",
-        "nexus/sequencing": "*@dev",
-        "nexus/warehouse": "*@dev",
+        "azaharizaman/nexus-backoffice": "*@dev",
+        "azaharizaman/nexus-document": "*@dev",
+        "azaharizaman/nexus-geo": "*@dev",
+        "azaharizaman/nexus-inventory": "*@dev",
+        "azaharizaman/nexus-sequencing": "*@dev",
+        "azaharizaman/nexus-warehouse": "*@dev",
         "php": "^8.3",
         "psr/log": "^3.0"
     },
@@ -35,19 +35,19 @@
         "mockery/mockery": "^1.6"
     },
     "suggest": {
-        "nexus/assets": "Enable preventive maintenance scheduling and asset tracking",
-        "nexus/audit-logger": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/crypto": "Cryptographic timestamp signing for customer signatures (Tier 3 compliance)",
-        "nexus/event-stream": "Work order state replay for compliance auditing",
-        "nexus/machine-learning": "AI-powered technician assignment and demand forecasting",
-        "nexus/notifier": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/party": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/product": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/routing": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/scheduler": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/storage": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/tenant": "Optional integration dependency; currently not referenced by package src.",
-        "nexus/workflow": "Optional integration dependency; currently not referenced by package src."
+        "azaharizaman/nexus-assets": "Enable preventive maintenance scheduling and asset tracking",
+        "azaharizaman/nexus-audit-logger": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-crypto": "Cryptographic timestamp signing for customer signatures (Tier 3 compliance)",
+        "azaharizaman/nexus-event-stream": "Work order state replay for compliance auditing",
+        "azaharizaman/nexus-machine-learning": "AI-powered technician assignment and demand forecasting",
+        "azaharizaman/nexus-notifier": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-party": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-product": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-routing": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-scheduler": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-storage": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-tenant": "Optional integration dependency; currently not referenced by package src.",
+        "azaharizaman/nexus-workflow": "Optional integration dependency; currently not referenced by package src."
     },
     "autoload": {
         "psr-4": {
