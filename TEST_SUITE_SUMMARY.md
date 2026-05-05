@@ -311,10 +311,10 @@ php bin/phpunit tests/FieldService/WorkOrderManagerTest.php
     </testsuites>
     <coverage>
         <include>
-            <directory suffix=".php">vendor/nexus/field-service/src</directory>
+            <directory suffix=".php">vendor/azaharizaman/nexus-field-service/src</directory>
         </include>
         <exclude>
-            <directory>vendor/nexus/field-service/src/Exceptions</directory>
+            <directory>vendor/azaharizaman/nexus-field-service/src/Exceptions</directory>
         </exclude>
     </coverage>
 </phpunit>

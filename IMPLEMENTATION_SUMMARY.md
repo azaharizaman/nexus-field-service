@@ -410,21 +410,21 @@ WorkOrderVerifiedEvent → GenerateReportOnVerification
 ### Package Dependencies (composer.json)
 ```json
 {
-  "nexus/party": "*@dev",
-  "nexus/backoffice": "*@dev",
-  "nexus/inventory": "*@dev",
-  "nexus/warehouse": "*@dev",
-  "nexus/scheduler": "*@dev",
-  "nexus/routing": "*@dev",
-  "nexus/geo": "*@dev",
-  "nexus/workflow": "*@dev",
-  "nexus/sequencing": "*@dev",
-  "nexus/document": "*@dev",
-  "nexus/storage": "*@dev",
-  "nexus/notifier": "*@dev",
-  "nexus/audit-logger": "*@dev",
-  "nexus/tenant": "*@dev",
-  "nexus/product": "*@dev"
+  "azaharizaman/nexus-party": "*@dev",
+  "azaharizaman/nexus-backoffice": "*@dev",
+  "azaharizaman/nexus-inventory": "*@dev",
+  "azaharizaman/nexus-warehouse": "*@dev",
+  "azaharizaman/nexus-scheduler": "*@dev",
+  "azaharizaman/nexus-routing": "*@dev",
+  "azaharizaman/nexus-geo": "*@dev",
+  "azaharizaman/nexus-workflow": "*@dev",
+  "azaharizaman/nexus-sequencing": "*@dev",
+  "azaharizaman/nexus-document": "*@dev",
+  "azaharizaman/nexus-storage": "*@dev",
+  "azaharizaman/nexus-notifier": "*@dev",
+  "azaharizaman/nexus-audit-logger": "*@dev",
+  "azaharizaman/nexus-tenant": "*@dev",
+  "azaharizaman/nexus-product": "*@dev"
 }
 ```
 

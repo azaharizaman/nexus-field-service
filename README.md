@@ -42,7 +42,7 @@ The **FieldService** package provides a complete solution for managing field ser
 ## Installation
 
 ```bash
-composer require nexus/field-service
+composer require azaharizaman/nexus-field-service
 ```
 
 ## Key Concepts
@@ -74,27 +74,27 @@ Service contracts define response times (e.g., "4 hours"). When a work order is 
 ## Dependencies
 
 ### Required Packages
-- `nexus/party` - Customer and vendor management
-- `nexus/backoffice` - Staff/technician management
-- `nexus/inventory` - Parts consumption tracking
-- `nexus/warehouse` - Van stock management
-- `nexus/scheduler` - Preventive maintenance automation
-- `nexus/routing` - Route optimization (Tier 3)
-- `nexus/geo` - Geocoding and distance calculation
-- `nexus/workflow` - SLA escalation
-- `nexus/sequencing` - Work order numbering
-- `nexus/document` - Service report PDF generation
-- `nexus/storage` - Photo and signature storage
-- `nexus/notifier` - Multi-channel notifications
-- `nexus/audit-logger` - Audit trail
-- `nexus/tenant` - Multi-tenancy isolation
-- `nexus/product` - Service and parts catalog
+- `azaharizaman/nexus-party` - Customer and vendor management
+- `azaharizaman/nexus-backoffice` - Staff/technician management
+- `azaharizaman/nexus-inventory` - Parts consumption tracking
+- `azaharizaman/nexus-warehouse` - Van stock management
+- `azaharizaman/nexus-scheduler` - Preventive maintenance automation
+- `azaharizaman/nexus-routing` - Route optimization (Tier 3)
+- `azaharizaman/nexus-geo` - Geocoding and distance calculation
+- `azaharizaman/nexus-workflow` - SLA escalation
+- `azaharizaman/nexus-sequencing` - Work order numbering
+- `azaharizaman/nexus-document` - Service report PDF generation
+- `azaharizaman/nexus-storage` - Photo and signature storage
+- `azaharizaman/nexus-notifier` - Multi-channel notifications
+- `azaharizaman/nexus-audit-logger` - Audit trail
+- `azaharizaman/nexus-tenant` - Multi-tenancy isolation
+- `azaharizaman/nexus-product` - Service and parts catalog
 
 ### Optional Packages
-- `nexus/assets` - Asset tracking and maintenance history
-- `nexus/intelligence` - AI-powered assignment (Tier 3)
-- `nexus/crypto` - Signature timestamp signing (Tier 3)
-- `nexus/event-stream` - Event sourcing for compliance
+- `azaharizaman/nexus-assets` - Asset tracking and maintenance history
+- `azaharizaman/nexus-intelligence` - AI-powered assignment (Tier 3)
+- `azaharizaman/nexus-crypto` - Signature timestamp signing (Tier 3)
+- `azaharizaman/nexus-event-stream` - Event sourcing for compliance
 
 ## Usage
 

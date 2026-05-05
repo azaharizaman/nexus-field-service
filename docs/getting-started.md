@@ -250,7 +250,7 @@ $partsConsumption = new PartsConsumption(
 ### Step 1: Install Package
 
 ```bash
-composer require nexus/field-service:"*@dev"
+composer require azaharizaman/nexus-field-service:"*@dev"
 ```
 
 ### Step 2: Create Database Migrations
